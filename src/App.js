@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+import react,{useState} from 'react';
 import './App.css';
+import {TaskList} from './component/TaskList'
+import DisplayTask from './component/DisplayTasks'
+import Add from './component/Add';
 
-function App() {
+const App=()=> {
+  const [taskList,setTaskList] = useState(TaskList);
+  
+  const addTask=(newTask)=>{
+    return setTaskList([...taskList, newTask])
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <Add addTask={addTask}/>
+      </div>
+      
+      <DisplayTask TaskList = {taskList} setTaskList={setTaskList}/>
     </div>
   );
 }
